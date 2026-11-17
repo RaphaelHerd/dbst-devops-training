@@ -256,6 +256,67 @@ def cmd_investigate(args) -> int:
     return 0
 
 
+def cmd_serve(args) -> int:
+    from . import serve
+
+    if args.kiro_config:
+        serve.write_kiro_config()
+    elif args.audit:
+        serve.print_audit()
+    elif args.test:
+        return serve.run_test()
+    else:
+        serve.main()
+    return 0
+
+
+def cmd_remediate(args) -> int:
+    from . import remediate
+
+    try:
+        if args.status:
+            remediate.print_status()
+        elif args.reset:
+            remediate.reset()
+        elif args.stop or args.resume:
+            remediate.stop_switch(on=args.stop)
+        elif args.postmortem:
+            remediate.postmortem()
+        else:
+            code = remediate.run(args.action, args.naive)
+            print()
+            remediate.print_status()
+            return code
+    except FileNotFoundError as error:
+        print(f"⏳ Task 4 - {error}")
+        return 1
+    except Exception as error:                          # missing .env values, expired key, network, ...
+        print(f"🛑 {type(error).__name__}: {error}")
+        return 1
+    return 0
+
+
+def cmd_eval(args) -> int:
+    from . import evaluate
+
+    try:
+        if args.cases:
+            evaluate.print_cases()
+        elif args.compare:
+            evaluate.compare()
+        elif args.attack:
+            evaluate.red_team(args.prompt)
+        else:
+            evaluate.evaluate(args.prompt)
+    except FileNotFoundError as error:
+        print(f"⏳ Task 2 - {error}")
+        return 1
+    except Exception as error:                          # missing .env values, expired key, network, ...
+        print(f"🛑 {type(error).__name__}: {error}")
+        return 1
+    return 0
+
+
 def main(argv: list[str] | None = None) -> int:
     for stream in (sys.stdout, sys.stderr):
         if hasattr(stream, "reconfigure"):
@@ -300,6 +361,24 @@ def main(argv: list[str] | None = None) -> int:
     inv.add_argument("--tool", nargs="+", metavar="ITEM",
                      help="call one tool directly, no LLM: the tool name, then key=value pairs, "
                           "e.g. --tool recent_changes service=payment-api hours=6")
+    srv = commands.add_parser("serve", help="Lab 6: OpsPilot's read-only tools as an MCP server (stdio)")
+    srv.add_argument("--test", action="store_true", help="start the server like Kiro does and call every tool")
+    srv.add_argument("--kiro-config", action="store_true", help="write .kiro/settings/mcp.json for this machine")
+    srv.add_argument("--audit", action="store_true", help="show the last calls from out/mcp_audit.jsonl")
+    rem = commands.add_parser("remediate", help="Lab 7: propose, check, dry-run, approve and run a mitigation "
+                                                "on the simulated platform")
+    rem.add_argument("--action", metavar='"TEXT"', help='an action typed by hand, e.g. "rollback payment-api 2.3.0"')
+    rem.add_argument("--naive", action="store_true", help="execute the action without any check (Step 1)")
+    rem.add_argument("--status", action="store_true", help="show the simulated platform")
+    rem.add_argument("--reset", action="store_true", help="reset the platform to 14:20, clear audit and stop switch")
+    rem.add_argument("--stop", action="store_true", help="press the red button: OpsPilot executes nothing")
+    rem.add_argument("--resume", action="store_true", help="turn the stop switch off")
+    rem.add_argument("--postmortem", action="store_true", help="draft the post-mortem (stretch goal)")
+    ev = commands.add_parser("eval", help="Lab 8: evaluate the cause-code proposal on the Gold set, attack OpsPilot")
+    ev.add_argument("--prompt", default="v1", help="prompt version: prompts/eval/<version>.md (default v1)")
+    ev.add_argument("--cases", action="store_true", help="show the Gold set per service, type and cause code")
+    ev.add_argument("--compare", action="store_true", help="compare all prompt versions you have evaluated")
+    ev.add_argument("--attack", action="store_true", help="run the red-team attacks against the prompt version")
     args = parser.parse_args(argv)
     if args.command == "data":
         return cmd_data(args)
@@ -313,6 +392,12 @@ def main(argv: list[str] | None = None) -> int:
         return cmd_similar(args)
     if args.command == "investigate":
         return cmd_investigate(args)
+    if args.command == "serve":
+        return cmd_serve(args)
+    if args.command == "remediate":
+        return cmd_remediate(args)
+    if args.command == "eval":
+        return cmd_eval(args)
     return 0
 
 
