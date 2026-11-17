@@ -1,0 +1,75 @@
+{
+  "categories": [
+    {
+      "name": "payment-failure",
+      "team": "team-payments",
+      "description": "The customer cannot complete a payment: error, timeout, hanging payment page, or money taken without a booking confirmation."
+    },
+    {
+      "name": "double-charge",
+      "team": "team-payments",
+      "description": "The customer was charged more than once for the same booking."
+    },
+    {
+      "name": "checkout-issue",
+      "team": "team-checkout",
+      "description": "A problem in the checkout before the payment: seats, vouchers, extras."
+    },
+    {
+      "name": "search-issue",
+      "team": "team-search",
+      "description": "The search shows no, wrong or slow results."
+    },
+    {
+      "name": "account-access",
+      "team": "team-identity",
+      "description": "Login, password or account problems."
+    },
+    {
+      "name": "billing-request",
+      "team": "team-service-desk",
+      "description": "Invoices, receipts and refunds for cancelled trips."
+    },
+    {
+      "name": "booking-change",
+      "team": "team-service-desk",
+      "description": "Changes to an existing booking: passenger name, bike, extras."
+    },
+    {
+      "name": "other",
+      "team": "team-service-desk",
+      "description": "Anything that fits no other category."
+    }
+  ],
+  "priorities": [
+    {
+      "name": "P1",
+      "assignable": false,
+      "sla_hours": 1,
+      "rule": "Never for a single ticket. Only for a problem that affects many customers - set by OpsPilot."
+    },
+    {
+      "name": "P2",
+      "assignable": true,
+      "sla_hours": 4,
+      "rule": "The customer cannot pay or book, or has lost money."
+    },
+    {
+      "name": "P3",
+      "assignable": true,
+      "sla_hours": 24,
+      "rule": "A feature does not work, but the customer can still book."
+    },
+    {
+      "name": "P4",
+      "assignable": true,
+      "sla_hours": 72,
+      "rule": "A question, a request or feedback without current impact."
+    }
+  ],
+  "problem_rule": {
+    "min_tickets": 10,
+    "window_minutes": 60,
+    "priority": "P1"
+  }
+}

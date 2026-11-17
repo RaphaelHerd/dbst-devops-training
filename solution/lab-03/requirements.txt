@@ -1,0 +1,7 @@
+# OpsPilot - all packages for the whole workshop (installed once in Lab 1)
+pandas>=2.2
+numpy>=1.26
+jsonschema>=4.22
+anthropic[bedrock]>=2.9,<3
+boto3>=1.40                # Lab 4 embeddings - reads AWS_BEARER_TOKEN_BEDROCK
+mcp[cli]>=2.3,<3

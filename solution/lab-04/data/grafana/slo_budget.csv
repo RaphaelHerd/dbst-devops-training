@@ -1,0 +1,4 @@
+service,slo_p95_ms,target_pct,window_days,bad_minutes_before_today
+payment-api,300,99.5,30,40
+checkout-web,800,99.5,30,12
+booking-search,500,99.5,30,5

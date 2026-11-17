@@ -1,0 +1,7 @@
+change_id,service,type,version,status,requested_by,started_at,finished_at,description
+CHG-20431,payment-api,deployment,2.3.0,completed,team-payments,2026-11-04T10:00:00+01:00,2026-11-04T10:04:00+01:00,Monthly maintenance release
+CHG-20437,booking-search,deployment,4.2.0,completed,team-search,2026-11-05T09:30:00+01:00,2026-11-05T09:41:00+01:00,Search ranking update
+CHG-20440,checkout-web,deployment,1.8.0,completed,team-checkout,2026-11-06T16:00:00+01:00,2026-11-06T16:07:00+01:00,New seat selection step
+CHG-20446,booking-search,config,,completed,team-search,2026-11-09T10:15:00+01:00,2026-11-09T10:16:00+01:00,Increase search cache TTL to 10 minutes
+CHG-20448,payment-api,deployment,2.3.1,completed,team-payments,2026-11-09T14:00:00+01:00,2026-11-09T14:03:00+01:00,Release 2.3.1: payment provider integration update
+CHG-20450,checkout-web,config,,scheduled,team-checkout,2026-11-10T08:00:00+01:00,,Enable winter sale banner

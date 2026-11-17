@@ -1,0 +1,9 @@
+question,expected
+checkout is slow,payment-api-latency.md#Symptoms
+What do I check first when payments take long?,payment-api-latency.md#Diagnosis
+How do I roll back payment-api?,payment-api-latency.md#Mitigation: rollback
+Who do I page if the rollback does not help?,payment-api-latency.md#Escalation
+The database has no free connections,payment-db.md#Connection pool exhausted
+Search results take ages to appear,booking-search.md#Slow search results
+Customers cannot pick their seats,checkout-web.md#Seat selection
+Is the payment provider down?,payment-provider.md#Provider status
