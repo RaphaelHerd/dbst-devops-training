@@ -1,6 +1,7 @@
 # 🛟 Solutions - OpsPilot After Every Lab
 
-📁 one complete project per lab · ✅ tested against Claude Haiku 5.5 and Titan Text Embeddings V2 (`us-west-2`)<br>
+📁 one complete project per lab · ✅ tested against Claude Haiku 5.5, Titan Text Embeddings V2 (`us-west-2`) and the MCP
+Python SDK 2.3<br>
 🎯 Fell behind? Take the missing part from here and continue with the next lab.
 
 > [!NOTE]
@@ -18,8 +19,12 @@ Every folder is the complete `opspilot` project after that lab - with all tasks 
 | `lab-03/` | `review.py`: `extract_failures()`, `scan_diff()`, `policy_gate()` | `prompts/change-review/2_cause.md` |
 | `lab-04/` | `knowledge.py`: `chunk_runbook()`, `top_k()`, `cluster()` | `prompts/ask/answer.md` |
 | `lab-05/` | `agent.py`: `recent_changes()` + tool definition, `investigate()`, `is_repeat()` | `prompts/investigate/v2.md` |
+| `lab-06/` | `serve.py`: `safe_path()`, `guarded()`, tool descriptions and input schemas | - |
+| `lab-07/` *(optional)* | `remediate.py`: `check_action()`, `dry_run()`, `decide()` | `prompts/remediate/postmortem.md` |
+| `lab-08/` *(optional)* | `evaluate.py`: `group_report()`, `redact()` | `prompts/eval/v2.md` |
 
-The task lists in `.kiro/specs/*/tasks.md` are ticked up to that lab.
+The task lists in `.kiro/specs/*/tasks.md` are ticked up to that lab. Lab 6 Task 4 stays open: the Kiro configuration
+holds the paths of **your** machine - run `python -m opspilot serve --kiro-config` in your own project.
 
 ## 🔁 Catch Up
 
@@ -54,5 +59,8 @@ Every folder was run against Bedrock (`us-west-2`, `us.anthropic.claude-haiku-5-
 | 3 | 22 log lines · 2 findings · gate FAIL · chain finds the retry loop, critic passes |
 | 4 | "checkout is slow" → latency runbook · 8 of 8 test questions · INC-3920 · hidden instruction ignored and reported · 31 payment alerts in one group |
 | 5 | agent finds release 2.3.1 in 5-6 steps, rules out the old SFTP error, recommends the rollback · step limit, repeat guard and report check work |
+| 6 | `serve --test`: 4 of 4 bad requests refused, no tool crashed, one audit line per call · Claude through MCP answers "why slow since 14:05?" with release 2.3.1, the timeouts and INC-3920 |
+| 7 | 4 bad actions blocked · paging automated · Claude proposes rollback 2.3.1 → 2.3.0, risk medium, canary 250 ms, alert clears · stop switch, circuit breaker, post-mortem draft |
+| 8 | cause codes v1 75 % → v2 100 %, explanations 100 % · weakest groups checkout-web and payment-api · 3 of 3 attacks withstood |
 
 LLM answers vary from run to run - the wording and single numbers can differ a little.

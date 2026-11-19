@@ -7,8 +7,8 @@ opspilot/                       project root - everything for the whole workshop
 │   └── specs/                  one spec per lab (requirements.md, design.md, tasks.md)
 ├── data/                       mock exports - READ ONLY
 │   ├── grafana/                metric exports, load baseline, SLO budget, alerts
-│   ├── itsm/                   tickets, changes, incidents, triage catalog
-│   ├── cicd/                   pipeline runs and logs, release diff, security advisories
+│   ├── itsm/                   tickets, changes, incidents, triage catalog, cause codes
+│   ├── cicd/                   pipeline runs and logs, release diff, security advisories, platform, releases
 │   ├── logs/                   application logs (JSON lines)
 │   ├── agora/runbooks/         runbooks from the knowledge base (Markdown)
 │   └── gold/                   Gold labels, examples and test questions for measuring the LLM
@@ -17,7 +17,9 @@ opspilot/                       project root - everything for the whole workshop
 │   ├── __main__.py             command line (one sub-command per lab)
 │   ├── config.py               paths, time zone, .env
 │   ├── loaders.py              read the exports
-│   └── <one module per topic>  cleaning, quality, anomaly, masking, llm, forecast, triage, review, knowledge, agent
+│   └── <one module per topic>  cleaning, quality, anomaly, masking, llm, forecast, triage, review, knowledge, agent,
+│                               serve, remediate, evaluate
+├── opspilot_server.py          the MCP server file a host (Kiro) starts - Lab 6
 ├── out/                        everything OpsPilot writes (git-ignored)
 ├── .env                        secrets from the trainer (git-ignored)
 └── requirements.txt

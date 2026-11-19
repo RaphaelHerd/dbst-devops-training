@@ -1,0 +1,24 @@
+{
+  "cause_codes": [
+    {
+      "name": "change-code",
+      "definition": "A release of our own software went live and caused it - including the database migrations and configuration files shipped with that release."
+    },
+    {
+      "name": "change-config",
+      "definition": "A setting of ours changed, expired or was wrong outside a release: configuration values, feature flags, certificates, keys, secrets."
+    },
+    {
+      "name": "capacity",
+      "definition": "Demand exceeded a limit: traffic, connections, threads, disk, memory or queues - without a change of code or configuration."
+    },
+    {
+      "name": "third-party",
+      "definition": "A system we do not operate failed or degraded: payment provider, banks, identity provider, external scripts. Use it only when nothing on our side had to be fixed."
+    },
+    {
+      "name": "data",
+      "definition": "Wrong, stale or duplicated data: imports, caches serving old content, duplicate events - even when a third party delivered them."
+    }
+  ]
+}

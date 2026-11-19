@@ -1,0 +1,5 @@
+package,fixed_in,advisory,severity,summary
+pyyaml,5.4,CVE-2020-14343,critical,Arbitrary code execution when untrusted YAML is loaded with full_load() or the FullLoader
+urllib3,1.26.5,CVE-2021-33503,high,Catastrophic backtracking (ReDoS) when parsing URLs with many @ characters
+httpx,0.23.0,CVE-2021-41945,critical,Improper input validation in httpx.URL and httpx.Client
+requests,2.32.0,CVE-2024-35195,medium,A Session keeps verify=False for later requests to the same host

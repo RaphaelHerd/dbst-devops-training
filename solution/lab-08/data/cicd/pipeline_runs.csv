@@ -1,0 +1,6 @@
+run_id,service,version,commit,trigger,status,started_at,finished_at,tests_passed,tests_failed,tests_skipped,coverage_pct,log_file
+4688,payment-api,2.3.0,3b1c2d4,merge,success,2026-11-04T09:38:00+01:00,2026-11-04T10:04:00+01:00,252,0,0,78.4,
+4693,booking-search,4.2.0,e81a0f3,merge,success,2026-11-05T09:02:00+01:00,2026-11-05T09:41:00+01:00,188,0,0,83.1,
+4701,checkout-web,1.8.0,5c7d2e9,merge,success,2026-11-06T15:31:00+01:00,2026-11-06T16:07:00+01:00,141,0,2,74.9,
+4711,payment-api,2.3.1,7f3e9a1,merge,failed,2026-11-09T13:12:00+01:00,2026-11-09T13:16:18+01:00,251,1,0,69.8,logs/run-4711.log
+4712,payment-api,2.3.1,9c41d07,manual,success,2026-11-09T13:41:00+01:00,2026-11-09T14:02:50+01:00,251,0,1,69.8,logs/run-4712.log

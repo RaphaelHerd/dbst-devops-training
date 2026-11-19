@@ -1,0 +1,10 @@
+# secrets
+.env
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# results written by OpsPilot
+out/

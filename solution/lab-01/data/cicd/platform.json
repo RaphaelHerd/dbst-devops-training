@@ -1,0 +1,34 @@
+{
+  "as_of": "2026-11-09T14:20:00+01:00",
+  "deployment_running": false,
+  "services": {
+    "payment-api": {
+      "kind": "service",
+      "team": "team-payments",
+      "version": "2.3.1",
+      "instances": 6,
+      "max_instances": 12
+    },
+    "checkout-web": {
+      "kind": "service",
+      "team": "team-checkout",
+      "version": "1.8.0",
+      "instances": 4,
+      "max_instances": 8
+    },
+    "booking-search": {
+      "kind": "service",
+      "team": "team-search",
+      "version": "4.2.0",
+      "instances": 4,
+      "max_instances": 8
+    },
+    "payment-db": {
+      "kind": "database",
+      "team": "team-platform",
+      "version": "postgres-16.4",
+      "instances": 3,
+      "max_instances": 3
+    }
+  }
+}
